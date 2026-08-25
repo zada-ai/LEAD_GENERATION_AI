@@ -1,6 +1,3 @@
-            <a href="{{ route('email-accounts.google.redirect') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
-                <a href="{{ route('email-accounts.google.redirect') }}" class="inline-flex items-center px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
-@extends('layouts.app')
 <x-app-layout :title="'Email Accounts'">
     <div class="max-w-7xl mx-auto">
         <!-- Header -->
@@ -9,7 +6,7 @@
                 <h1 class="text-3xl font-bold text-gray-900">Email Accounts</h1>
                 <p class="text-gray-600 mt-1">Manage your connected Gmail accounts</p>
             </div>
-            <a href="{{ route('google.redirect') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+            <a href="{{ route('email-accounts.google.redirect') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
                 </svg>
@@ -25,7 +22,7 @@
                 </svg>
                 <h3 class="text-xl font-semibold text-gray-900 mb-2">No Gmail accounts connected</h3>
                 <p class="text-gray-600 mb-6">Connect your Gmail account to manage customer conversations from the CRM.</p>
-                <a href="{{ route('google.redirect') }}" class="inline-flex items-center px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+                <a href="{{ route('email-accounts.google.redirect') }}" class="inline-flex items-center px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
                     </svg>

@@ -1,71 +1,149 @@
-@auth
-<aside class="hidden md:flex w-64 bg-gray-900 text-white flex-col">
-    <!-- Logo -->
-    <div class="px-6 py-8 border-b border-gray-800">
-        <h1 class="text-2xl font-bold">Lead CRM</h1>
-        <p class="text-xs text-gray-400 mt-1">Automation Platform</p>
+<aside class="w-64 bg-gray-900 text-white min-h-screen p-4 hidden md:block">
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-blue-400">Lead CRM</h1>
+        <p class="text-xs text-gray-400 mt-1">AI-Powered Lead Automation</p>
     </div>
 
-    <!-- Navigation -->
-    <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-        <x-sidebar-link route="dashboard" icon="📊" label="Dashboard" />
-        <x-sidebar-link route="leads.index" icon="👥" label="Leads" />
-        
-        <div class="my-4 border-t border-gray-800"></div>
-        
-        <div class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wide">Coming Soon</div>
-        <x-sidebar-link-disabled icon="📧" label="Campaigns" />
-        <x-sidebar-link route="inbox.index" icon="📬" label="Inbox" />
-        <x-sidebar-link route="email-accounts.index" icon="📧" label="Email Accounts" />
-        <x-sidebar-link-disabled icon="🤖" label="AI Automation" />
-        <x-sidebar-link-disabled icon="📍" label="Sources" />
-        <x-sidebar-link-disabled icon="📈" label="Analytics" />
-        
-        <div class="my-4 border-t border-gray-800"></div>
-        
-        <x-sidebar-link route="profile.edit" icon="⚙️" label="Settings" />
-    </nav>
+    <nav class="space-y-1">
+        <!-- Main Navigation -->
+        <a 
+            href="{{ route('dashboard') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">📊</span>
+            <span class="text-sm">Dashboard</span>
+        </a>
 
-    <!-- Footer -->
-    <div class="px-4 py-6 border-t border-gray-800">
-        <form method="POST" action="{{ route('logout') }}">
+        <a 
+            href="{{ route('leads.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('leads.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">👥</span>
+            <span class="text-sm">Leads</span>
+        </a>
+
+        <a 
+            href="{{ route('sources.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('sources.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">🔍</span>
+            <span class="text-sm">Sources & Discovery</span>
+        </a>
+
+        <a 
+            href="{{ route('campaigns.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('campaigns.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">🚀</span>
+            <span class="text-sm">Campaigns</span>
+        </a>
+
+        <a 
+            href="{{ route('inbox.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('inbox.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">📥</span>
+            <span class="text-sm">Inbox</span>
+        </a>
+
+        <a 
+            href="{{ route('email-accounts.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('email-accounts.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">✉️</span>
+            <span class="text-sm">Email Accounts</span>
+        </a>
+
+        <a 
+            href="{{ route('follow-ups.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('follow-ups.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">⏰</span>
+            <span class="text-sm">Follow-ups</span>
+        </a>
+
+        <a 
+            href="{{ route('ai-automation.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('ai-automation.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">🤖</span>
+            <span class="text-sm">AI Automation</span>
+        </a>
+
+        <a 
+            href="{{ route('analytics.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('analytics.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">📈</span>
+            <span class="text-sm">Analytics</span>
+        </a>
+
+        <div class="my-4 border-t border-gray-800"></div>
+
+        <a 
+            href="{{ route('settings.index') }}" 
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors {{ request()->routeIs('settings.*') ? 'bg-blue-600 text-white font-medium' : 'text-gray-300 hover:bg-gray-800' }}"
+        >
+            <span class="text-lg">⚙️</span>
+            <span class="text-sm">Settings</span>
+        </a>
+
+        <form method="POST" action="{{ route('logout') }}" class="pt-4">
             @csrf
-            <button type="submit" class="w-full px-4 py-2 text-left text-sm hover:bg-gray-800 rounded-lg transition-colors">
-                🚪 Logout
+            <button type="submit" class="w-full flex items-center gap-3 px-4 py-2.5 text-left text-sm text-red-300 hover:bg-red-900/30 rounded-lg transition-colors">
+                <span class="text-lg">🚪</span>
+                <span>Logout</span>
             </button>
         </form>
-    </div>
+    </nav>
 </aside>
 
-<!-- Mobile Menu Button -->
-<div class="md:hidden fixed top-0 left-0 right-0 bg-gray-900 text-white px-4 py-4 flex items-center justify-between z-50">
-    <h1 class="text-xl font-bold">Lead CRM</h1>
-    <button class="mobile-menu-btn text-2xl">☰</button>
+<!-- Mobile Navigation Header -->
+<div class="md:hidden bg-gray-900 text-white p-4 flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center gap-2">
+        <span class="text-xl font-bold text-blue-400">Lead CRM</span>
+    </div>
+    <button type="button" class="mobile-menu-btn text-gray-300 hover:text-white focus:outline-none text-2xl">
+        ☰
+    </button>
 </div>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu hidden fixed inset-0 bg-gray-900 text-white z-40 pt-20 overflow-y-auto md:hidden">
-    <nav class="px-4 py-6 space-y-2">
-        <x-sidebar-link route="dashboard" icon="📊" label="Dashboard" />
-        <x-sidebar-link route="leads.index" icon="👥" label="Leads" />
-        
-        <div class="my-4 border-t border-gray-800"></div>
-        
-        <div class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wide">Coming Soon</div>
-        <x-sidebar-link-disabled icon="📧" label="Campaigns" />
-        <x-sidebar-link route="inbox.index" icon="📬" label="Inbox" />
-        <x-sidebar-link route="email-accounts.index" icon="📧" label="Email Accounts" />
-        <x-sidebar-link-disabled icon="🤖" label="AI Automation" />
-        <x-sidebar-link-disabled icon="📍" label="Sources" />
-        <x-sidebar-link-disabled icon="📈" label="Analytics" />
-        
-        <div class="my-4 border-t border-gray-800"></div>
-        
-        <x-sidebar-link route="profile.edit" icon="⚙️" label="Settings" />
-        
-        <form method="POST" action="{{ route('logout') }}" class="mt-6">
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-menu hidden md:hidden bg-gray-900 text-white p-4 border-b border-gray-800">
+    <nav class="space-y-1">
+        <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>📊</span><span>Dashboard</span>
+        </a>
+        <a href="{{ route('leads.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>👥</span><span>Leads</span>
+        </a>
+        <a href="{{ route('sources.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>🔍</span><span>Sources & Discovery</span>
+        </a>
+        <a href="{{ route('campaigns.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>🚀</span><span>Campaigns</span>
+        </a>
+        <a href="{{ route('inbox.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>📥</span><span>Inbox</span>
+        </a>
+        <a href="{{ route('email-accounts.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>✉️</span><span>Email Accounts</span>
+        </a>
+        <a href="{{ route('follow-ups.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>⏰</span><span>Follow-ups</span>
+        </a>
+        <a href="{{ route('ai-automation.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>🤖</span><span>AI Automation</span>
+        </a>
+        <a href="{{ route('analytics.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>📈</span><span>Analytics</span>
+        </a>
+        <a href="{{ route('settings.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800">
+            <span>⚙️</span><span>Settings</span>
+        </a>
+        <form method="POST" action="{{ route('logout') }}" class="pt-2">
             @csrf
-            <button type="submit" class="w-full px-4 py-2 text-left text-sm bg-red-600 hover:bg-red-700 rounded-lg transition-colors">
+            <button type="submit" class="w-full px-4 py-2 text-left text-sm bg-red-600 hover:bg-red-700 rounded-lg">
                 🚪 Logout
             </button>
         </form>
@@ -74,9 +152,6 @@
 
 <script>
     document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
-        document.querySelector('.mobile-menu').classList.toggle('hidden');
+        document.querySelector('.mobile-menu')?.classList.toggle('hidden');
     });
 </script>
-@else
-<div class="hidden"></div>
-@endauth

@@ -88,8 +88,10 @@ class GmailSyncService
      */
     protected function storeEmail(EmailAccount $emailAccount, array $messageData): void
     {
-        // Match lead by sender email
-        $lead = Lead::where('email', $messageData['from_email'])->first();
+        // Match lead by sender email belonging to this user
+        $lead = Lead::where('email', $messageData['from_email'])
+            ->where('created_by', $emailAccount->user_id)
+            ->first();
 
         // Create or update conversation
         $conversation = Conversation::updateOrCreate(
@@ -168,9 +170,12 @@ class GmailSyncService
             'from_name' => $emailAccount->display_name,
             'to_email' => $to,
             'subject' => $subject,
+            'body_text' => strip_tags($body),
             'body_html' => $body,
+            'snippet' => \Illuminate\Support\Str::limit(strip_tags($body), 150),
             'direction' => 'outgoing',
             'sent_at' => now(),
+            'received_at' => now(),
             'is_read' => true,
         ]);
 

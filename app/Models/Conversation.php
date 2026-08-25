@@ -45,16 +45,15 @@ class Conversation extends Model
     public function emails(): HasMany
     {
         return $this->hasMany(Email::class, 'gmail_thread_id', 'gmail_thread_id')
-            ->where('email_account_id', $this->email_account_id)
-            ->orderBy('received_at', 'asc');
+            ->orderByRaw('COALESCE(received_at, sent_at, created_at) asc');
     }
 
     /**
      * Get the latest email in this conversation.
      */
-    public function latestEmail()
+    public function latestEmail(): ?Email
     {
-        return $this->emails()->latest('received_at')->first();
+        return $this->emails()->reorder()->orderByRaw('COALESCE(received_at, sent_at, created_at) desc')->first();
     }
 
     /**

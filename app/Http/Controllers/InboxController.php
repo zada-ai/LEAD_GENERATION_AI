@@ -144,12 +144,25 @@ class InboxController extends Controller
                 $emailAccount->refresh();
             }
 
-            // Get the recipient email from latest message
+            // Get the recipient email from latest message or lead
             $latestEmail = $conversation->latestEmail();
-            $recipientEmail = $latestEmail->from_email;
-            $subject = $latestEmail->subject 
-                ? ('Re: ' . $latestEmail->subject)
-                : 'Re: (no subject)';
+            if ($latestEmail) {
+                $recipientEmail = $latestEmail->direction === 'outgoing' 
+                    ? $latestEmail->to_email 
+                    : $latestEmail->from_email;
+                $rawSubject = $latestEmail->subject ?? $conversation->subject ?? 'No Subject';
+            } else {
+                $recipientEmail = $conversation->lead?->email;
+                $rawSubject = $conversation->subject ?? 'No Subject';
+            }
+
+            if (!$recipientEmail) {
+                throw new Exception('No recipient email found for this conversation.');
+            }
+
+            $subject = str_starts_with(strtolower(trim($rawSubject)), 're:') 
+                ? $rawSubject 
+                : 'Re: ' . $rawSubject;
 
             // Send via Gmail
             $this->gmailService->sendReply(

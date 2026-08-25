@@ -1,4 +1,3 @@
-@extends('layouts.app')
 <x-app-layout :title="$conversation->lead?->business_name ?? 'Conversation'">
     <div class="max-w-4xl mx-auto">
         <!-- Header -->
@@ -134,7 +133,7 @@
 
                             <div>
                                 <p class="text-sm text-gray-500">Status</p>
-                                <x-priority-badge :priority="$conversation->lead->status" />
+                                <x-badge :status="$conversation->lead->status" />
                             </div>
                         </div>
                     </x-card>

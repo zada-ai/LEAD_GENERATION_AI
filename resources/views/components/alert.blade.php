@@ -1,4 +1,4 @@
-@props(['type' => 'info'])
+@props(['type' => 'info', 'message' => null])
 
 @php
 $classes = [
@@ -30,7 +30,7 @@ $iconClasses = [
             @endif
         </div>
         <div class="flex-1">
-            {{ $slot }}
+            {{ $message ?? $slot }}
         </div>
     </div>
 </div>

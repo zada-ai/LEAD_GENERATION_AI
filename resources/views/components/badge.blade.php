@@ -24,5 +24,5 @@ $sizes = [
 @endphp
 
 <span class="inline-flex items-center rounded-full font-medium {{ $colors[$status] ?? $colors['new'] }} {{ $sizes[$size] ?? $sizes['md'] }}">
-    {{ $slot }}
+    {{ $slot->isEmpty() ? ucfirst(str_replace('_', ' ', $status)) : $slot }}
 </span>

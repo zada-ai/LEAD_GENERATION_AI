@@ -9,5 +9,5 @@ $colors = [
 @endphp
 
 <span class="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium {{ $colors[$priority] ?? $colors['medium'] }}">
-    {{ $slot }}
+    {{ $slot->isEmpty() ? ucfirst($priority) : $slot }}
 </span>
