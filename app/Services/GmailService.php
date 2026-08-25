@@ -346,12 +346,18 @@ class GmailService
         $email .= "Subject: {$subject}\r\n";
         if ($threadId) {
             $email .= "In-Reply-To: <{$threadId}>\r\n";
+            $email .= "References: <{$threadId}>\r\n";
         }
         $email .= "Content-Type: text/html; charset=\"UTF-8\"\r\n\r\n";
         $email .= $body;
 
         $message = new \Google\Service\Gmail\Message();
-        $message->setRaw(base64_encode($email));
+        if ($threadId) {
+            $message->setThreadId($threadId);
+        }
+        // Use URL-safe base64 encoding as required by Gmail API
+        $raw = rtrim(strtr(base64_encode($email), '+/', '-_'), '=');
+        $message->setRaw($raw);
 
         return $message;
     }

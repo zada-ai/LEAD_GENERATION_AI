@@ -1,4 +1,3 @@
-@extends('layouts.app')
 <x-app-layout :title="'Inbox'">
     <div class="max-w-7xl mx-auto">
         <!-- Header -->
@@ -83,7 +82,7 @@
                         <a href="{{ route('inbox.show', $conversation) }}" class="block bg-white rounded-lg shadow hover:shadow-lg transition p-4 border-l-4 {{ $conversation->hasUnread() ? 'border-blue-500 bg-blue-50' : 'border-gray-200' }}">
                             <div class="flex justify-between items-start gap-4">
                                 <div class="flex-1 min-w-0">
-                                    <div class="flex items-center gap-3 mb-2">
+                                    <div class="flex items-center gap-3 mb-1">
                                         <h3 class="text-lg font-semibold text-gray-900 truncate">
                                             {{ $conversation->lead?->business_name ?? 'Unknown Sender' }}
                                         </h3>
@@ -91,8 +90,9 @@
                                             <span class="inline-block w-3 h-3 bg-blue-500 rounded-full"></span>
                                         @endif
                                     </div>
-                                    <p class="text-sm text-gray-600 truncate">{{ $conversation->latestEmail()?->from_email }}</p>
-                                    <p class="text-sm text-gray-700 mt-2 line-clamp-2">{{ $conversation->latestEmail()?->snippet }}</p>
+                                    <p class="text-sm font-medium text-gray-800 truncate mb-1">{{ $conversation->subject ?? 'No Subject' }}</p>
+                                    <p class="text-xs text-gray-500 truncate">{{ $conversation->latestEmail()?->from_email }}</p>
+                                    <p class="text-sm text-gray-700 mt-1 line-clamp-2">{{ $conversation->latestEmail()?->snippet }}</p>
                                 </div>
                                 <div class="text-right flex-shrink-0">
                                     <p class="text-sm text-gray-500">

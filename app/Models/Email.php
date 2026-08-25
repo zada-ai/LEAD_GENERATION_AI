@@ -57,7 +57,6 @@ class Email extends Model
      */
     public function conversation(): BelongsTo
     {
-        return $this->belongsTo(Conversation::class, 'gmail_thread_id', 'gmail_thread_id')
-            ->where('email_account_id', $this->email_account_id);
+        return $this->belongsTo(Conversation::class, 'gmail_thread_id', 'gmail_thread_id');
     }
 }
